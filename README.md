@@ -1,12 +1,16 @@
 # ansible-tutorial
-## video number 6
-### writing first play book
+## video number 7
+### the 'when' Conditional
 
-- run playbook
+- recongnize the version of os
     
-    ansible-playbook install alongside with ansible
+    >cat &nbsp; /etc/os-release
 
-    > ansible-playbook --ask-become-pass install_apache.yml
-    
-    unreachable=1 when network error <br/>
-    skip=1  if requirements are met
+- limit running ansible to a specific server
+
+    > ansible all -m gather_facts --limit &nbsp; #ip_address
+
+    <br/>
+    ansible variable:
+
+    ![gather_facts](gether_fact.png)
