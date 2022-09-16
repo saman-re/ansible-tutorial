@@ -1,33 +1,26 @@
 # ansible-tutorial
-## video number 4
-### running ad-hoc Commands
+## video number 5
+### running elevated ad-hoc Commands
 
 
-- installing ansible
+- run ad-hoc commands
+    
+    -a stands for argument --become stands for becoming root and --ask-become-pass ask password for becoming root
 
-  > sudo apt update
-  
-  >sudo apt install ansible
+    > ansible all -m apt -a update_cache = true --become --ask-become-pass
 
-- create inventory file
-  
-    contain servers ip addresses or domain name
+    - install package 
 
-***
+        install vim-nox to all server
 
-- run ansible Commands
+        >ansible all -m apt -a name=vim-nox --become --ask-become-pass
 
-    run to all servers ping modules -i stand for inventory file -m stand for modules
+        show any upgrade available or not
 
-    >ansible all &nbsp; --key-file &nbsp; ~/.ssh/ansible &nbsp; -i &nbsp; inventory -m ping
+        >sudo apt dist-upgrade
 
-    \
-    after making ansible.cfg file can short previous Command
+        for than one argument use double qoute 
+        
+        state=latest install the latest package available
 
-    >ansible all &nbsp; -m &nbsp; ping
-
-    \
-    to showing all the hosts run:
-    >ansible all --list-hosts 
-
-    >ansible all -m gather_facts
+        >ansible all -m apt -a "name=snapd state=latest" --become --ask-become-pass
