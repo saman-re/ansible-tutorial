@@ -5,11 +5,14 @@
   tasks:
 
   - name: install updates (CentOS)
+    tags: always
     dnf:
       update_only: yes
       update_cache: yes
     when: ansible_distribution == "CentOS"
+
   - name: install updates (Ubuntu)
+    tags: always
     apt:
       upgrade: dist
     when: ansible_distribution == "Ubuntu"
@@ -20,6 +23,7 @@
      
   - name: install apache and php
   #package module is a ansible module use generic os package manager
+    tags: apache,apache2,ubuntu
     package:
       name: 
         - "{{ apache_package }}"
@@ -31,13 +35,15 @@
   become: true
   tasks:
 
-  - name: isntall mariadb package (CentOS)
+  - name: install mariadb package (CentOS)
+    tags: centos,db,mariadb
     dnf:
       name: mariadb
       state: latest
     when: ansible_distribution == "CentOS"
   
   - name: install mariadb package (Ubuntu)
+    tags: db,mariadb,ubuntu
     apt:
       name: mariadb-server
       state: latest
@@ -48,6 +54,7 @@
   tasks:
 
   - name: install samba package
+    tags: samba
     package:
       name: samba
       state: latest
