@@ -17,6 +17,16 @@
       upgrade: dist
     when: ansible_distribution == "Ubuntu"
 
+- hosts: all
+  become: true
+  tasks:
+
+  - name: create simone user
+    tags: always
+    user:
+      name: simone
+      groups: root
+
 - hosts: workstation
   become: true
   tasks:
