@@ -21,11 +21,11 @@
   become: true
   tasks:
 
-  - name: create simone user
+  - name: add ssh key for simone
     tags: always
-    user:
-      name: simone
-      groups: root
+    authorized_key:
+      user: simone
+      key: "your public key"
 
 - hosts: workstation
   become: true
